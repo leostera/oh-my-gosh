@@ -12,7 +12,6 @@ func Reset() {
 
 func MakeCmd(command []string) *exec.Cmd {
 	cmd := _makeCmd(command)
-	cmd.Env = os.Environ()
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	return cmd
