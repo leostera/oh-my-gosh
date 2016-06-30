@@ -1,4 +1,4 @@
-.PHONY: all ci setup lint benchmark build test install uninstall
+.PHONY: all ci setup lint benchmark build test
 
 PREFIX ?= /usr/local
 GO = $(shell which go)
@@ -16,16 +16,10 @@ lint:
 	$(GO) vet
 
 benchmark:
-	$(GO) test -bench .
+	$(GO) test -bench -test.v ./...
 
 build:
-	$(GO) build -o ./watch
+	$(GO) build
 
 test:
-	$(GO) test
-
-install: build
-	install watch $(PREFIX)/bin/watch
-
-uninstall:
-	rm -rf $(PREFIX)/bin/watch
+	$(GO) test -test.v ./...

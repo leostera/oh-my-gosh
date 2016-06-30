@@ -35,14 +35,14 @@ func fixtureCmdSlice(args []string) []string {
 // Tests
 
 func TestRunSuccessfully(t *testing.T) {
-	ok := run(fixtureCmdSlice(fixtureArgs()))
+	ok := Run(fixtureCmdSlice(fixtureArgs()))
 	if ok != 0 {
 		t.Fatalf("%d should be 0", ok)
 	}
 }
 
 func TestRunExit(t *testing.T) {
-	err := run(fixtureCmdSlice(fixtureBadArgs()))
+	err := Run(fixtureCmdSlice(fixtureBadArgs()))
 	if err != 2 {
 		t.Fatalf("%d should not be 2", err)
 	}
@@ -53,13 +53,13 @@ func TestRunExit(t *testing.T) {
 func BenchmarkRunSuccessfully(b *testing.B) {
 	cmd := fixtureCmdSlice(fixtureArgs())
 	for n := 0; n < b.N; n++ {
-		run(cmd)
+		Run(cmd)
 	}
 }
 
 func BenchmarkRunExit(b *testing.B) {
 	cmd := fixtureCmdSlice(fixtureBadArgs())
 	for n := 0; n < b.N; n++ {
-		run(cmd)
+		Run(cmd)
 	}
 }
