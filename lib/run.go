@@ -7,15 +7,15 @@ import (
 	"syscall"
 )
 
-func reset() {
-	run([]string{ClearCmd})
+func Reset() {
+	Run([]string{ClearCmd})
 }
 
-func printStatus(s int) {
+func PrintStatus(s int) {
 	fmt.Printf("\033[90mexit: %d\033[0m\n\n", s)
 }
 
-func makeCmd(command []string) *exec.Cmd {
+func MakeCmd(command []string) *exec.Cmd {
 	cmd := _makeCmd(command)
 	cmd.Env = os.Environ()
 	cmd.Stdout = os.Stdout
@@ -23,7 +23,7 @@ func makeCmd(command []string) *exec.Cmd {
 	return cmd
 }
 
-func getExitStatus(err error) int {
+func GetExitStatus(err error) int {
 	if err == nil {
 		return 0
 	}
@@ -35,12 +35,12 @@ func getExitStatus(err error) int {
 	return -1
 }
 
-func commandExists(command []string) bool {
+func CommandExists(command []string) bool {
 	_, result := exec.LookPath(command[0])
 	return result == nil
 }
 
-func run(command []string) int {
-	cmd := makeCmd(command)
-	return getExitStatus(cmd.Run())
+func Run(command []string) int {
+	cmd := MakeCmd(command)
+	return GetExitStatus(cmd.Run())
 }

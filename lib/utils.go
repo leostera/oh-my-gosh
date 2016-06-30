@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func die(status int, message string) {
+func Die(status int, message string) {
 	if len(message) > 0 {
 		fmt.Println(message)
 	}
