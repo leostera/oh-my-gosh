@@ -1,7 +1,6 @@
 package omg
 
 import (
-	"fmt"
 	"os"
 	"os/exec"
 	"syscall"
@@ -9,10 +8,6 @@ import (
 
 func Reset() {
 	Run([]string{ClearCmd})
-}
-
-func PrintStatus(s int) {
-	fmt.Printf("\033[90mexit: %d\033[0m\n\n", s)
 }
 
 func MakeCmd(command []string) *exec.Cmd {

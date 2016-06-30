@@ -11,3 +11,7 @@ func Die(status int, message string) {
 	}
 	os.Exit(status)
 }
+
+func PrintStatus(s int) {
+	fmt.Printf("\033[90mexit: %d\033[0m\n\n", s)
+}
